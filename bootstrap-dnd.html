@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+
+<head>
+
+  <title>Live Drag and Drop HTML/CSS Editor</title>
+
+  <!-- Bootstrap core CSS 
+<link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet"> -->
+
+ <!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://getbootstrap.com/dist/js/bootstrap.js"></script>
+
+
+  <link href="http://johnny.github.com/jquery-sortable/css/vendor.css" rel="stylesheet">
+      
+  <link href="http://johnny.github.com/jquery-sortable/css/application.css" rel="stylesheet">
+
+  <!-- Living on the edge by referencing the github directly -->
+  <!-- (makes it easier to share with others, minimizing files) -->
+  <script src="http://johnny.github.com/jquery-sortable/js/application.js"></script>
+  <script src="http://johnny.github.com/jquery-sortable/js/jquery-sortable-min.js"></script>
+  <script type="text/javascript" src="http://jscolor.com/jscolor/jscolor.js"></script>
+    
+  <!--
+  <script src="johnny-application.js"></script>
+  <script src="jquery-sortable-johnny.js"></script>
+  <script src="jscolor/jscolor.js"></script>
+	-->
+
+<link href="style/bootstrap-dnd.css" rel="stylesheet">
+<!--<style>
+</style> -->
+
+<script type="text/javascript">
+var old = '';
+function update()
+{
+  var textarea = document.f.ta;
+  var d = parent.dynamicpagepreview.document; 
+  if (old != textarea.value)
+  {
+    old = textarea.value;
+    d.open();
+    d.write(old);
+    d.close();
+  }
+  window.setTimeout(update, 150);
+}
+    
+    // Code to show/hide the HTML source code div
+    /* from: http://www.mkyong.com/jquery/jquery-toggle-example-to-display-and-hide-content/
+     */
+    
+$(document).ready(function() {
+  $('.toggle').click(function(){
+     //get collapse content selector
+     var collapse_selector = $(this).attr('href');     
+     //make the collapse content to be shown or hide
+     var toggle_switch = $(this);
+     $(collapse_selector).toggle(function(){
+         //change the button label to be 'Show'
+         if($(this).css('display')=='none'){
+            toggle_switch.html('Show source code');
+         }
+        //change the button label to be 'Hide'
+        else {
+            toggle_switch.html('Hide source code');
+        }
+         });
+     });
+  });
+
+</script>
+
+</head>
+
+
+<body class="" onload="update(); document.f.ta.select();">
+
+<div>   <!--class="bootstrap-container"-->
+	  <div class="page-header">
+    <h1>Drag-and-drop HTML Editor</h1>
+  </div>
+
+<div id="examples">
+
+<div class="row">
+
+
+  <div id="left-col" class="span4">
+
+
+<!-- ****************************** ****************************** -->
+
+    <!-- These items are draggable and clone when dropped -->
+
+
+    <!-- ---------- CSS MENU to drag from ---------- -->
+
+    <h3> Drag CSS properties from here </h3> <!-- I'm only draggable (I clone) -->
+    <div id="css-menu">
+    <ol class="simple_with_no_drop vertical">
+      
+      <li class="highlight css-el">
+          <i class="icon-move"></i>.<span contenteditable class="user-input classname">className</span> {
+          <ol></ol>
+          <br/>
+        }
+        </li>
+
+        <li class="highlight css-el">
+          <i class="icon-move"></i>#<span contenteditable class="user-input idname">idName</span> {
+          <ol></ol>
+          <br/>
+        }
+        </li>
+
+        <li class="highlight css-prop">
+          <i class="icon-move"></i> /*<br/><span contenteditable class="user-input csscomment">CSS Comment</span>
+            <ol></ol> */
+        </li>
+
+        <li class="highlight css-prop" id="color">
+          <i class="icon-move"></i> color: <span contenteditable class="user-input color">66FF00</span>;
+        </li>
+
+        <li class="highlight css-prop">
+            <i class="icon-move"></i> background-color: <span contenteditable class="user-input color">66FF00</span>;
+        </li>
+        
+        <li class="highlight css-prop">
+            <i class="icon-move"></i> background-image: url('<span contenteditable class="user-input img image url"></span>');
+        </li>
+        
+        
+       
+
+        <li class="highlight css-prop" id="input-color-hex">
+          <i class="icon-move"></i> color: <input class="color" value="66FF00">; <!-- not working yet just for demo -->
+        </li>
+
+        <li class="highlight css-prop" id="height-px">
+            <i class="icon-move"></i> height: <span contenteditable class="user-input dimension">175</span>px;
+        </li>
+
+        <li class="highlight css-prop" id="width-px">
+              <i class="icon-move"></i> width: <span contenteditable class="user-input dimension">200</span>px;
+        </li>
+
+        <li class="highlight css-prop" id="height-percent">
+              <i class="icon-move"></i> height: <span contenteditable class="user-input dimension">50</span>%;
+        </li>
+
+        <li class="highlight css-prop" id="width-percent">
+              <i class="icon-move"></i> width: <span contenteditable class="user-input dimension">95</span>%;
+        </li>
+
+
+
+        <li class="highlight css-prop" id="float">
+            <i class="icon-move"></i> float:
+            <select class="user-input float">
+              <option value="left" selected>left</option>
+              <option value="right">right</option>
+              <option value="none">none</option>
+              <!--option value="inherit">inherit</option-->
+            </select>;
+        </li>
+        
+        <li class="highlight css-prop" id="float">
+            <i class="icon-move"></i> float: <span contenteditable class="user-input float">right</span>;
+        </li>
+
+        <li class="highlight css-prop">
+            <i class="icon-move"></i> display:
+            <select class="user-input display">
+              <option value="block">block</option>
+              <option value="inline" selected>inline</option>
+              <option value="inline-block">inline-block</option>
+              <option value="none">none</option>
+              <!--option value="inherit">inherit</option-->
+            </select>;
+        </li>
+
+        <li class="highlight css-el">
+          <i class="icon-move"></i>
+          /* order is top right bottom left */ <br/>
+          margin:
+          <span contenteditable class="user-input margin">10</span>px <span contenteditable class="user-input margin">15</span>px <span contenteditable class="user-input margin">20</span>px <span contenteditable class="user-input margin">15</span>px;
+        </li>
+
+        <!-- class = paddign or margin? -->
+        <li class="highlight css-el">
+          <i class="icon-move"></i>
+          /* order is top right bottom left */ <br/>
+          padding:<span contenteditable class="user-input padding">5</span>px <span contenteditable class="user-input padding">25</span>px <span contenteditable class="user-input padding">5</span>px <span contenteditable class="user-input padding">20</span>px;
+        </li>
+
+
+
+    </ol>
+</div>
+
+
+    <!-- These items are draggable and clone when dropped -->
+    
+    <h3>Drag HTML elements from here </h3> 
+
+    <div id="html-menu">
+    
+    <ol class="simple_with_no_drop vertical">
+
+
+
+
+
+
+
+      <li class="" id="div">
+          <i class="icon-move"></i>
+          &lt;div 
+          id="<span contenteditable class="user-input text"></span>" 
+          class="<span contenteditable class="user-input text"></span>"
+          &gt;
+          <ol></ol>
+          &lt;/div&gt;
+      </li>
+
+
+
+
+
+
+       <li class="" id="div">
+          <i class="icon-move"></i> &lt;div id="<span contenteditable class="user-input text"></span>" class="<span contenteditable class="user-input text"></span>"&gt;
+          <ol></ol>
+          &lt;/div&gt;
+        </li>
+
+
+        <li class="" id="html-comment">
+          <i class="icon-move"></i> &lt;!--<br/> <span contenteditable class="user-input htmlcomment">HTML Comment</span>
+            <ol></ol>
+            --&gt;
+        </li>
+        
+
+
+
+        <li class="" id="a">
+              <i class="icon-move"></i> &lt;a href="<span contenteditable class="user-input url">Copy a URL here</span>" target="
+              <select class="atarget">
+                <option value="_blank" selected>_blank</option>
+                <option value="_parent">_parent</option>
+                <!--option value="_self">oblique</option-->
+              <!--option value="_top">inherit</option-->
+            </select>" id="<span contenteditable class="user-input text"></span>" class="<span contenteditable class="user-input text"></span>"&gt;<span contenteditable class="user-input link">Link text</span>&lt;/a&gt;
+        </li>
+
+
+
+
+        <li class="" id="img">
+              <i class="icon-move"></i> &lt;img src="<span contenteditable class="user-input url">Image URL</span>" id="<span contenteditable class="user-input text"></span>" class="<span contenteditable class="user-input text"></span>" height="<span contenteditable class="user-input dimension"></span>"
+              width="<span contenteditable class="user-input dimension"></span>" <!--
+              style:"
+              float: <span contenteditable class="user-input float">left</span>;"-->
+              /&gt;
+        </li>
+
+        <li class="" id="p">
+          <i class="icon-move"></i>
+          &lt;p id="<span contenteditable class="user-input text"></span>" class="<span contenteditable class="user-input text"></span>"&gt;
+          <ol>
+            <li class="" id="text">
+              <i class="icon-move"></i><span contenteditable class="user-input p text">Write some paragraph text here...</span>
+            </li>
+          </ol>
+          &lt;/p&gt;
+        </li>
+
+        <li class="" id="br">
+          <i class="icon-move"></i> &lt;br /&gt;
+        </li>
+
+        
+
+
+
+    </ol>
+</div>
+
+
+<!-- ****************************** ****************************** -->
+
+
+
+
+<h3> Text Formatting </h3> <!-- I'm only draggable (I clone) -->
+
+    <div id="html-text-menu">
+
+    <ol class="simple_with_no_drop vertical">
+
+        <li class="" id="h1">
+              <i class="icon-move"></i> &lt;h1 id="<span contenteditable class="user-input text"></span>" class="<span contenteditable class="user-input text"></span>"&gt;<span contenteditable class="user-input heading">Heading 1 text</span>&lt;/h1&gt;
+        </li>
+
+        <li class="" id="h2">
+              <i class="icon-move"></i> &lt;h2 id="<span contenteditable class="user-input text"></span>" class="<span contenteditable class="user-input text"></span>"&gt;<span contenteditable class="user-input heading">Heading 2 text</span>&lt;/h2&gt;
+        </li>
+
+
+        <li class="" id="b">
+              <i class="icon-move"></i> &lt;b&gt;<span contenteditable class="user-input heading">Bold text</span>&lt;/b&gt;
+        </li>
+
+        <li class="" id="i">
+              <i class="icon-move"></i> &lt;i&gt;<span contenteditable class="user-input heading">Italic text</span>&lt;/i&gt;
+        </li>
+
+        <li class="" id="u">
+              <i class="icon-move"></i> &lt;u&gt;<span contenteditable class="user-input heading">Underlined text</span>&lt;/u&gt;
+        </li-->
+
+        <li class="" id="strong">
+            <i class="icon-move"></i> &lt;strong&gt;<span contenteditable class="user-input text">Important text</span>&lt;/strong&gt;
+        </li>
+
+        <li class="" id="em">
+              <i class="icon-move"></i> &lt;em&gt;<span contenteditable class="user-input text">Emphasized text</span>&lt;/em&gt;
+        </li>
+
+        <li class="" id="mark">
+              <i class="icon-move"></i> &lt;mark&gt;<span contenteditable class="user-input text">Marked/highlighted text</span>&lt;/mark&gt;
+        </li>
+
+
+    </ol>
+</div>
+
+
+
+
+<h3> Lists and other </h3>
+
+
+<div id="html-menu-lists-other">
+<ol class="simple_with_no_drop vertical">
+
+
+<li class="" id="ul">
+          <i class="icon-move"></i>
+          &lt;ul&gt;
+          <ol>
+            <li class="" id="uli">
+              <i class="icon-move"></i> &lt;li&gt; <span contenteditable class="user-input li"> Unordered list item </span>&lt;/li&gt;
+            </li>
+          </ol>
+          &lt;/ul&gt;
+        </li>
+
+
+        <li class="" id="ol">
+          <i class="icon-move"></i>
+          &lt;ol&gt;
+          <ol>
+            <li class="" id="oli">
+              <i class="icon-move"></i> &lt;li&gt; <span contenteditable class="user-input li"> Ordered list item </span>&lt;/li&gt;
+            </li>
+          </ol>
+          &lt;/ol&gt;
+        </li>
+
+
+        <li class="" id="li">
+              <i class="icon-move"></i> &lt;li id="<span contenteditable class="user-input text"></span>" class="<span contenteditable class="user-input text"></span>"&gt; <span contenteditable class="user-input li"> List item </span>&lt;/li&gt;
+        </li>
+
+
+        <li class="" id="select">
+          <i class="icon-move"></i>
+          &lt;select&gt;
+          <ol>
+            <li class="" id="option">
+              <i class="icon-move"></i>
+              &lt;option value="<span contenteditable class="user-input text value">actual-value</span>"&gt;
+              <span contenteditable class="user-input text">Display value</span>
+              <br/>
+              &lt;/option&gt;
+            </li>
+          </ol>
+          &lt;/select&gt;
+        </li>
+
+
+
+       <li class="bootstrap button" id="btn-default">
+            <i class="icon-move"></i> 
+            &lt;button type="button" class="btn btn-default 
+            <span contenteditable class="user-input text"></span>
+            "&gt;
+            <span contenteditable class="user-input text">
+              Default button
+            </span>
+            &lt;/button&gt;
+      </li>
+
+      <li class="bootstrap button" id="btn-primary">
+            <i class="icon-move"></i> 
+            &lt;button type="button" class="btn btn-primary 
+            <span contenteditable class="user-input text"></span>
+            "&gt;
+            <span contenteditable class="user-input text">
+              Primary button
+            </span>
+            &lt;/button&gt;
+      </li>
+
+       <li class="bootstrap button" id="btn-success">
+            <i class="icon-move"></i> 
+            &lt;button type="button" class="btn btn-success 
+            <span contenteditable class="user-input text"></span>
+            "&gt;
+            <span contenteditable class="user-input text">
+              Success button
+            </span>
+            &lt;/button&gt;
+      </li>
+
+       <li class="bootstrap button" id="btn-info">
+            <i class="icon-move"></i> 
+            &lt;button type="button" class="btn btn-info 
+            <span contenteditable class="user-input text"></span>
+            "&gt;
+            <span contenteditable class="user-input text">
+              Info button
+            </span>
+            &lt;/button&gt;
+      </li>
+
+
+       <li class="bootstrap button" id="btn-warning">
+            <i class="icon-move"></i> 
+            &lt;button type="button" class="btn btn-warning 
+            <span contenteditable class="user-input text"></span>
+            "&gt;
+            <span contenteditable class="user-input text">
+              Warning button
+            </span>
+            &lt;/button&gt;
+      </li>
+
+       <li class="bootstrap button" id="btn-danger">
+            <i class="icon-move"></i> 
+            &lt;button type="button" class="btn btn-danger 
+            <span contenteditable class="user-input text"></span>
+            "&gt;
+            <span contenteditable class="user-input text">
+              Danger button
+            </span>
+            &lt;/button&gt;
+      </li>
+
+       <li class="bootstrap button" id="btn-link">
+            <i class="icon-move"></i> 
+            &lt;button type="button" class="btn btn-link 
+            <span contenteditable class="user-input text"></span>
+            "&gt;
+            <span contenteditable class="user-input text">
+              Link button
+            </span>
+            &lt;/button&gt;
+      </li>      
+
+
+
+
+      <li class="bootstrap well" id="well-sm">
+          <i class="icon-move"></i>
+          &lt;div 
+          id="<span contenteditable class="user-input text"></span>" 
+          class="<span contenteditable class="user-input text">well well-sm</span>"
+          &gt;
+          <span contenteditable class="user-input text">
+              Look, I'm in a small well!
+          </span>
+          &lt;/div&gt;
+      </li>
+
+      <li class="bootstrap well" id="well-lg">
+          <i class="icon-move"></i>
+          &lt;div 
+          id="<span contenteditable class="user-input text"></span>" 
+          class="<span contenteditable class="user-input text">well well-lg</span>"
+          &gt;
+
+          <span contenteditable class="user-input text">
+              Look, I'm in a large well!
+          </span>
+
+          &lt;/div&gt;
+      </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</ol>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- ---------- Potential trash can ---------- -->
+
+    <h3>Drop items you don't want here</h3>
+    <ol class="simple_with_no_drag vertical">
+      <li>
+          <i class="icon-move"></i>
+          <span contenteditable="true">Trash</span>
+        </li>
+    </ol>
+  </div> <!-- end left-col -->
+
+
+
+
+
+<div id="middle-col">    
+    
+<!-- ---------- HTML DRAG AND DROP WORKSPACE ---------- -->
+
+  <div id="html-dnd-workspace"><!--span4--> <!--class="span5"-->
+
+    <h3>Drag and drop to create your page</h3>
+    
+      <ol id="workspace" class="simple_with_drop vertical">
+          
+
+        <li style="" class="">
+              &lt;head&gt;
+              <ol>
+
+                <li class="">
+                      <i class="icon-move"></i>
+                      &lt;!--
+                      <span contenteditable="" class="user-input htmlcomment">Bootstrap core CSS</span>
+                      --&gt;
+                      <ol>
+                        <li class="">
+                  <i class="icon-move"></i>
+                  &lt;link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet"&gt;
+                </li>
+
+                      </ol> 
+                  </li>
+
+                
+              </ol>
+            &lt;/head&gt;
+
+            </li>
+            <br>
+        
+
+<!-- Bootstrap core CSS -->
+
+          
+            <li style="" class="">
+              <!--i class="icon-move"></i--> &lt;body&gt;
+              <ol>
+                  <li>
+                      <!--i class="icon-move"></i-->
+                      &lt;style&gt;
+                      <!--<br/>
+                       <textarea rows="3" cols="50">body {background-color: #B2FFFF;} div {color: red; background-color:white;}
+                       </textarea>
+                       <br/>-->
+                      <ol>
+                          
+                          <li class="highlight css-el">
+                              <i class="icon-move"></i>body {
+                              <ol>
+                                  <li class="highlight css-prop">
+                                      <i class="icon-move"></i> background-color: <!--<span contenteditable class="user-input color">#B2FFFF</span>;<!--<input class="color" value="66FF00">-->
+                                      
+                                      <!--input class="user-input color" name="colorinput" value="94FFAD">;-->
+                                      
+                                      <span contenteditable="" class="user-input color">#B2FFFF</span>;
+                                      
+                                  </li>
+
+                                  <li class="highlight css-prop">
+                                      <i class="icon-move"></i>
+                                      color:<span contenteditable="" class="user-input color">indigo</span>;
+                                  </li>
+                                  
+                                  
+                                  
+                                  <li class="highlight css-prop">
+                                      <i class="icon-move"></i> font-family: "<span contenteditable="" class="user-input color">Palatino Linotype</span>";
+                                  </li>
+                                  
+                              </ol>
+                              }
+                          </li>
+
+
+
+<li class="highlight css-el">
+  <i class="icon-move"></i>
+  .<span contenteditable="" class="user-input idname">feature</span> {
+  <ol>
+
+    <li class="highlight css-prop">
+      <i class="icon-move"></i>
+      background-color:<span contenteditable="" class="user-input bgcolor">lightgrey</span>;
+    </li>
+
+    <li class="highlight css-prop" id="float">
+      <i class="icon-move"></i>
+      float: <span contenteditable class="user-input float">left</span>;
+    </li>
+
+    <li class="highlight css-prop" id="display">
+      <i class="icon-move"></i>
+      display: <span contenteditable class="user-input display">inline-block</span>;
+    </li>
+
+    <li class="highlight css-prop">
+      <i class="icon-move"></i>
+      height: <span contenteditable class="user-input dimension">200</span>px;
+    </li>
+
+    <li class="highlight css-prop">
+      <i class="icon-move"></i>
+      width: <span contenteditable class="user-input dimension">25</span>%;
+    </li>
+
+    <li class="highlight css-el">
+          <i class="icon-move"></i>
+          /* order is top right bottom left */ <br/>
+          margin:
+          <span contenteditable class="user-input margin">0</span>px <span contenteditable class="user-input margin">10</span>px;
+    </li>
+
+  </ol>
+}
+</li>
+
+<li class="highlight css-el">
+  <i class="icon-move"></i>
+  #<span contenteditable="" class="user-input idname">left-box</span> {
+  <ol>
+
+    <li class="highlight css-prop">
+      <i class="icon-move"></i>
+      background-color:<span contenteditable="" class="user-input bgcolor">pink</span>;
+    </li>
+    </ol>
+</li>
+
+
+
+<li class="highlight css-el">
+  <i class="icon-move"></i>
+  #<span contenteditable="" class="user-input idname">center-box</span> {
+  <ol>
+
+    <li class="highlight css-prop">
+      <i class="icon-move"></i>
+      background-color:<span contenteditable="" class="user-input bgcolor">lime</span>;
+    </li>
+    </ol>
+</li>
+
+
+<li class="highlight css-el">
+  <i class="icon-move"></i>
+  #<span contenteditable="" class="user-input idname">right-box</span> {
+  <ol>
+
+    <li class="highlight css-prop">
+      <i class="icon-move"></i>
+      background-color:<span contenteditable="" class="user-input bgcolor">skyblue</span>;
+    </li>
+    </ol>
+</li>
+                          
+
+    </ol>
+    
+    &lt;/style&gt;
+</li>
+                  
+
+
+
+
+
+
+
+
+<!-- unsorted list in html -->
+
+<li class="" style="">
+  <i class="icon-move"></i> &lt;ul id="<span contenteditable="" class="user-input text">navbar</span>" class="<span contenteditable="" class="user-input text">dark</span>"&gt;
+  <ol>
+
+    <li class="" id="li"><i class="icon-move"></i>&lt;li
+      id="
+      <span contenteditable="" class="user-input text"></span>" 
+      class="
+      <span contenteditable="" class="user-input text"></span>"
+      &gt; 
+      <span contenteditable="" class="user-input li">
+        Home
+      </span>
+
+      <!--ol></ol-->
+
+      &lt;/li&gt;
+    </li>
+
+    <li class="" id="li"><i class="icon-move"></i>
+      &lt;li id="
+      <span contenteditable="" class="user-input idname"></span>" class="
+      <span contenteditable="" class="user-input classname"></span>"
+      &gt; 
+      <span contenteditable="" class="user-input li"> About</span>
+
+      <!--ol></ol-->
+
+      &lt;/li&gt;
+    </li>
+
+    <li class="" id="li">
+      <i class="icon-move"></i> &lt;li id="<span contenteditable="" class="user-input text"></span>" class="<span contenteditable="" class="user-input text"></span>"&gt; <span contenteditable="" class="user-input li">Events</span>
+
+      <!--ol></ol-->
+      
+      &lt;/li&gt;
+    </li>
+
+    <li class="" id="li">
+      <i class="icon-move"></i> &lt;li id="<span contenteditable="" class="user-input text"></span>" class="<span contenteditable="" class="user-input text"></span>"&gt; <span contenteditable="" class="user-input li">Contact</span>
+
+      <!--ol></ol-->
+      
+      &lt;/li&gt;
+    </li>
+
+  </ol>
+
+  &lt;/ul&gt;
+</li>
+                  
+                  <li class="" style="">
+  <i class="icon-move"></i>
+  &lt;h1&gt;<span contenteditable="" class="user-input heading">Welcome!</span>
+  &lt;/h1&gt;
+</li>
+
+
+                  <li class="">
+                      <i class="icon-move"></i>
+                      &lt;p&gt;
+                      <ol>
+                          <li class="">
+                              <i class="icon-move"></i><span contenteditable="" class="user-input p text">This is an example paragraph with some boring text. But here is a link to </span>
+                          </li>
+                          
+                          <li class="">
+                              <i class="icon-move"></i> &lt;a href="<span contenteditable="" class="user-input">http://www.google.com</span>" target="blank"&gt; <span contenteditable="" class="user-input link">Google</span>&lt;/a&gt;
+                          </li>
+                          
+                          <li class="">
+                              <i class="icon-move"></i><span contenteditable="" class="user-input p text">, if you are interested. </span>
+                          </li>
+                          
+                      </ol>
+                      &lt;/p&gt;
+                  </li>
+
+                  
+                  
+                  
+
+
+
+<li class="" style="">
+    <i class="icon-move"></i> &lt;div id="<span contenteditable="" class="user-input text">left-box</span>" class="<span contenteditable="" class="user-input text">feature</span>"&gt;
+    <ol>
+      <li class="" style="">
+        <i class="icon-move"></i> &lt;h2&gt;<span contenteditable="" class="user-input heading">Left Content</span>&lt;/h2&gt;
+      </li>
+  </ol>
+    &lt;/div&gt;
+</li>
+
+
+
+<li class="" style="">
+    <i class="icon-move"></i> &lt;div id="<span contenteditable="" class="user-input text">center-box</span>" class="<span contenteditable="" class="user-input text">feature</span>"&gt;
+    <ol>
+      <li class="" style="">
+        <i class="icon-move"></i> &lt;h2&gt;<span contenteditable="" class="user-input heading">Middle/Center Content</span>&lt;/h2&gt;
+      </li>
+  </ol>
+    &lt;/div&gt;
+</li>
+
+
+
+<li class="" style="">
+    <i class="icon-move"></i> &lt;div id="<span contenteditable="" class="user-input text">right-box</span>" class="<span contenteditable="" class="user-input text">feature</span>"&gt;
+    <ol>
+      <li class="" style="">
+        <i class="icon-move"></i> &lt;h2&gt;<span contenteditable="" class="user-input heading">Right Content</span>&lt;/h2&gt;
+      </li>
+  </ol>
+    &lt;/div&gt;
+</li>
+
+
+<li class="" id="html-comment">
+          <i class="icon-move"></i>
+          &lt;!-- 
+          <span contenteditable class="user-input htmlcomment">Bootstrap core JavaScript</span>
+          ==================================================
+          --&gt;
+          &lt;!--
+          Placed at the end of the document so the pages load faster 
+          --&gt;
+          <ol>
+            <li class="script">
+              <i class="icon-move"></i>
+              &lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"&gt;&lt;/script&gt;
+            </li>
+            <li class="script">
+              <i class="icon-move"></i>
+              &lt;script src="http://getbootstrap.com/dist/js/bootstrap.js"&gt;&lt;/script&gt;
+            </li>
+          </ol>
+            
+        </li>
+
+                  
+              </ol>
+              &lt;/body&gt;
+          </li>
+
+      </ol>
+
+
+
+
+      <button href="#generated-source-code" class="toggle">Show source code</button>
+	  
+
+    <!-- --------------- HTML SOURCE CODE --------------- -->
+
+   <div id='generated-source-code'>  <!--style="display:none">class="span3"-->
+
+    <h3>HTML source code</h3>
+
+    <form name="f" method="post" target="dynamicpagepreview">
+
+      <!-- Calls serialize on page load to general html/css source code
+       to fill this text area. Updates it whenever a keyup trigger
+       in elements of the user-input class. Was hardcoded before -_- -->
+
+      <textarea id="serialize_output" name="ta" rows="10" cols="140">
+      </textarea>
+    </form>
+
+      </div> <!-- end generated-source-code -->
+
+  </div> <!--end html-dnd-workspace -->
+    
+</div> <!-- end middle-col -->
+
+  <div id="right-col" class="span5">
+  
+    <!-- ---------- WEB PAGE OUTPUT ---------- -->
+
+<h3>Web page preview</h3>
+<iframe name="dynamicpagepreview" id="dynamicpagepreview" src="javascript:'-'"></iframe>
+
+</div> <!-- end right-col -->
+
+</div> <!-- end row -->
+
+
+
+
+<!--/div--> <!-- end examples -->
+
+
+
+
+
+
+
+
+<footer class="footer">
+  <h5> Many thanks to the creators of these awesome things: </h5>  
+
+  <p> Uses <a href="http://johnny.github.com/jquery-sortable/" target="_blank"> jQuery Sortable</a>
+    created by <a href="https://github.com/johnny" target="_blank">Jonas von Andrian</a>.
+      Built with <a href="http://twitter.github.com/bootstrap/" target="_blank">Bootstrap</a>.
+      Icons from <a href="http://glyphicons.com/" target="_blank">Glyphicons Free</a>.
+      <br/>
+      Uses <a href="http://jscolor.com/" target="_blank">JSColor</a>.
+      <br/>
+      Uses functionality from <a href="http://www.onlinehtmleditor.net/">Online HTML Editor</a>.
+      Website made by <a href="http://www.jimwestergren.com/" target="_blank">Jim Westergren</a>, and javascript for live edits made by <a href="http://www.squarefree.com/" target="_blank">Jesse Ruderman</a>.
+  </p>
+</footer>
+</div> <!-- end bootstrap container -->
+
+
+
+
+
+
+
+
+<script>
+/* if a contenteditable user-input class is changed,
+trigger the onDrop function for the draganddrop editor,
+which updates the generated sourcecode */
+
+var group = $("ol.simple_with_drop").sortable({
+//var group = $("#workspace").sortable({
+    group:  'no-drop', //'simple_with_drop',
+   // handle: 'i.icon-move', //uncomment to make only grabbable at icon
+
+    /* if you comment out the handle line, you can click on the entire
+rectangle to move it. However, this messes up the ability to click on
+contenteditable spans. */
+
+  onDragStart: function (item, container, _super) {
+    // Duplicate items of the no drop area
+    if(!container.options.drop)
+      item.clone().insertAfter(item)
+    _super(item)
+  },
+
+  onDrop: function (item, container, _super) {
+    $('#serialize_output').text(group.sortable("serialize").get().join(""))
+    _super(item, container)
+  },
+  serialize: function (parent, children, isContainer) {
+    return isContainer ? children.join() : parent.text()
+  }
+})
+
+/* if any change happens in an element of .user-input class,
+call the onDrop function,
+which triggers the generated HTML source code to update,
+which then automatically updates the web page preview */
+
+  // on keystroke changes, update the generated html source code!
+  // aka call serialize
+$('.user-input').live("keyup",function(){
+$('#serialize_output').text(group.sortable("serialize").get().join(""))
+})
+
+    /* still can't figure out how to only get the selected value of a select
+     dropdown to serialize, and not the other options... or hte value of an input
+     elment*/
+    
+/*change for select, input, textarea elements
+correctly triggers serialize function,
+but still doesn't get the values of these elements  */
+$('.user-input').live("change",function(){
+$('#serialize_output').text(group.sortable("serialize").get().join(""))
+})
+    
+$(document).ready(function() {
+$('#serialize_output').text(group.sortable("serialize").get().join(""))
+})
+
+
+$("ol.simple_with_no_drag").sortable({
+group: 'no-drop',
+drag: false,
+onDrop: function (item, container, _super) {
+// DELETE THE ITEM ....???
+item.dispose()
+}
+
+})
+
+</script> 
+
+
+
+
+
+   
+
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,116 @@
+    body {
+      margin: 1% 3%;
+      }/*0px 50px;*/
+    
+    .page-header {margin: 0;} /*override bootstrap padding for top title*/
+    
+    .row {width: 100%;} /*override bootstrap */
+
+  
+    
+/* 
+ Element sizes adjusted for people who can't read teeny font 
+ */
+
+ h3 {padding-top: 15px;}
+    
+/* left sidebar/menu of options to drag */
+    
+#left-col { 
+  width: 15%; /*20%;*/
+}
+
+#middle-col {
+    width: 45%; /*45%; /* 30%;  /*35%;*/
+    float: left;
+    margin: 0% 1%;      /*20px;*/ /*2% between columns */
+}
+
+#right-col {
+  width: 35%; /*45%; /*38%;*/
+  float: left;
+  margin-left: 5px;
+}
+    
+
+#html-menu {
+    height: 400px;
+    overflow-y: scroll;
+}
+
+#css-menu {
+    height: 300px;
+    overflow-y: scroll;
+}
+
+/*
+ controls width of the draggable blocks
+ in the html and css menu */
+/*
+ .simple_with_no_drop {width: 275px; }
+ */
+
+#html-dnd-workspace{ }
+    
+/* hide source code initially, a button allows you to reveal it */
+#generated-source-code {display: none; width: 100%;}
+ 
+ #serialize_output {
+   margin-top:5px;
+   margin-bottom: 0px;
+   padding:10px;
+   border:1px dashed gray;
+   background-color:#fafafa;
+   /*height: 80%; /*450px; /* 500px */
+  /* width: 300px;
+  /*display: none;*/
+ }
+ 
+ iframe {
+  height:750px; /* 500px */
+  width: 100%;
+ }
+
+    
+
+
+/* highlight class used for css draggable components */
+ol li.highlight {
+  background: lightcyan;
+  color: black;
+}
+
+ol li.highlight i.icon-move
+{
+  background-image: url("http://johnny.github.com/jquery-sortable/img/glyphicons-halflings.png");
+}
+
+/* Different types of contenteditable spans */
+    
+span { 
+  background-color: white;
+  padding: 2px;
+}
+.user-input {padding-left: 4px; padding-right: 4px;}
+    
+.heading {width: 50px;}
+.p {height: 100px;}
+
+.css-el, .css-prop, .className, .idName {}
+.link {}
+.li {}
+.comment, .htmlcomment, .csscomment {}
+.text {}
+
+/* for select dropdowns */
+.display, .atarget, .float, .fontweight, .fontstyle { width: 75px;}
+.fontvariant { width: 100px;}
+.fontfam { width: 135px;} /* is there a way to do pixel OR 100%? */
+
+input.color {width: 50px;}
+
+#p {}
+#ul {}
+#ol {}
+#li {}
+#a {}

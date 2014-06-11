@@ -1,0 +1,435 @@
+
+Create block level buttons—those that span the full width of a parent— by adding .btn-block.
+
+Fancy larger or smaller buttons? Add .btn-lg, .btn-sm, or .btn-xs for additional sizes.
+
+Buttons will appear pressed (with a darker background, darker border, and inset shadow) when active. For <button> elements, this is done via :active. For <a> elements, it's done with .active. However, you may use .active <button>s should you need to replicate the active state progammatically.
+
+Button element
+
+No need to add :active as it's a pseudo-class, but if you need to force the same appearance, go ahead and add .active.
+
+<button type="button" class="btn btn-primary btn-lg active">Primary button</button>
+
+Anchor element    Add the .active class to <a> buttons.
+<a href="#" class="btn btn-primary btn-lg active" role="button">Primary link</a>
+
+Cross-browser rendering
+As a best practice, we highly recommend using the <button> element whenever possible to ensure matching cross-browser rendering.
+
+
+Usage
+Via data attributes or JavaScript, the dropdown plugin toggles hidden content (dropdown menus) by toggling the .open class on the parent list item. When opened, the plugin also adds .dropdown-backdrop as a click area for closing dropdown menus when clicking outside the menu.
+
+Add data-toggle="dropdown" to a link or button to toggle a dropdown.
+To keep URLs intact, use the data-target attribute instead of href="#".
+
+Call the dropdowns via JavaScript:
+
+$('.dropdown-toggle').dropdown()
+
+$().dropdown('toggle')
+
+Toggles the dropdown menu of a given navbar or tabbed navigation.
+
+$('#myDropdown').on('show.bs.dropdown', function () {
+  // do something…
+})
+
+
+
+
+<!-- ****************************** ****************************** -->
+
+    <!-- These items are draggable and clone when dropped -->
+
+
+    <!-- ---------- CSS MENU to drag from ---------- -->
+
+    <h3> Drag CSS properties from here </h3> <!-- I'm only draggable (I clone) -->
+    <div id="css-menu">
+    <ol class="simple_with_no_drop vertical">
+      
+      <li class="highlight css-el">
+          <i class="icon-move"></i>.<span contenteditable class="user-input classname">className</span> {
+          <ol></ol>
+          <br/>
+        }
+        </li>
+
+        <li class="highlight css-el">
+          <i class="icon-move"></i>#<span contenteditable class="user-input idname">idName</span> {
+          <ol></ol>
+          <br/>
+        }
+        </li>
+
+        <li class="highlight css-prop">
+          <i class="icon-move"></i> /*<br/><span contenteditable class="user-input csscomment">CSS Comment</span>
+            <ol></ol> */
+        </li>
+
+        <li class="highlight css-prop" id="color">
+          <i class="icon-move"></i> color: <span contenteditable class="user-input color">66FF00</span>;
+        </li>
+
+        <li class="highlight css-prop">
+            <i class="icon-move"></i> background-color: <span contenteditable class="user-input color">66FF00</span>;
+        </li>
+        
+        <li class="highlight css-prop">
+            <i class="icon-move"></i> background-image: url('<span contenteditable class="user-input img image url"></span>');
+        </li>
+        
+        
+       
+
+        <li class="highlight css-prop" id="input-color-hex">
+          <i class="icon-move"></i> color: <input class="color" value="66FF00">; <!-- not working yet just for demo -->
+        </li>
+
+        <li class="highlight css-prop" id="height-px">
+            <i class="icon-move"></i> height: <span contenteditable class="user-input dimension">175</span>px;
+        </li>
+
+        <li class="highlight css-prop" id="width-px">
+              <i class="icon-move"></i> width: <span contenteditable class="user-input dimension">200</span>px;
+        </li>
+
+        <li class="highlight css-prop" id="height-percent">
+              <i class="icon-move"></i> height: <span contenteditable class="user-input dimension">50</span>%;
+        </li>
+
+        <li class="highlight css-prop" id="width-percent">
+              <i class="icon-move"></i> width: <span contenteditable class="user-input dimension">95</span>%;
+        </li>
+
+
+
+        <li class="highlight css-prop" id="float">
+            <i class="icon-move"></i> float:
+            <select class="user-input float">
+              <option value="left" selected>left</option>
+              <option value="right">right</option>
+              <option value="none">none</option>
+              <!--option value="inherit">inherit</option-->
+            </select>;
+        </li>
+        
+        <li class="highlight css-prop" id="float">
+            <i class="icon-move"></i> float: <span contenteditable class="user-input float">right</span>;
+        </li>
+
+        <li class="highlight css-prop">
+            <i class="icon-move"></i> display:
+            <select class="user-input display">
+              <option value="block">block</option>
+              <option value="inline" selected>inline</option>
+              <option value="inline-block">inline-block</option>
+              <option value="none">none</option>
+              <!--option value="inherit">inherit</option-->
+            </select>;
+        </li>
+
+        <li class="highlight css-el">
+          <i class="icon-move"></i>
+          /* order is top right bottom left */ <br/>
+          margin:
+          <span contenteditable class="user-input margin">10</span>px <span contenteditable class="user-input margin">15</span>px <span contenteditable class="user-input margin">20</span>px <span contenteditable class="user-input margin">15</span>px;
+        </li>
+
+        <!-- class = paddign or margin? -->
+        <li class="highlight css-el">
+          <i class="icon-move"></i>
+          /* order is top right bottom left */ <br/>
+          padding:<span contenteditable class="user-input padding">5</span>px <span contenteditable class="user-input padding">25</span>px <span contenteditable class="user-input padding">5</span>px <span contenteditable class="user-input padding">20</span>px;
+        </li>
+
+
+
+    </ol>
+</div>
+
+
+    <!-- These items are draggable and clone when dropped -->
+    
+    <h3>Drag HTML elements from here </h3> 
+
+    <div id="html-menu">
+    
+    <ol class="simple_with_no_drop vertical">
+
+
+
+
+
+
+
+      <li class="" id="div">
+          <i class="icon-move"></i>
+          &lt;div 
+          id="<span contenteditable class="user-input text"></span>" 
+          class="<span contenteditable class="user-input text"></span>"
+          &gt;
+          <ol></ol>
+          &lt;/div&gt;
+      </li>
+
+
+
+
+
+
+       <li class="" id="div">
+          <i class="icon-move"></i> &lt;div id="<span contenteditable class="user-input text"></span>" class="<span contenteditable class="user-input text"></span>"&gt;
+          <ol></ol>
+          &lt;/div&gt;
+        </li>
+
+
+        <li class="" id="html-comment">
+          <i class="icon-move"></i> &lt;!--<br/> <span contenteditable class="user-input htmlcomment">HTML Comment</span>
+            <ol></ol>
+            --&gt;
+        </li>
+        
+
+
+
+        <li class="" id="a">
+              <i class="icon-move"></i> &lt;a href="<span contenteditable class="user-input url">Copy a URL here</span>" target="
+              <select class="atarget">
+                <option value="_blank" selected>_blank</option>
+                <option value="_parent">_parent</option>
+                <!--option value="_self">oblique</option-->
+              <!--option value="_top">inherit</option-->
+            </select>" id="<span contenteditable class="user-input text"></span>" class="<span contenteditable class="user-input text"></span>"&gt;<span contenteditable class="user-input link">Link text</span>&lt;/a&gt;
+        </li>
+
+
+
+
+        <li class="" id="img">
+              <i class="icon-move"></i> &lt;img src="<span contenteditable class="user-input url">Image URL</span>" id="<span contenteditable class="user-input text"></span>" class="<span contenteditable class="user-input text"></span>" height="<span contenteditable class="user-input dimension"></span>"
+              width="<span contenteditable class="user-input dimension"></span>" <!--
+              style:"
+              float: <span contenteditable class="user-input float">left</span>;"-->
+              /&gt;
+        </li>
+
+        <li class="" id="p">
+          <i class="icon-move"></i>
+          &lt;p id="<span contenteditable class="user-input text"></span>" class="<span contenteditable class="user-input text"></span>"&gt;
+          <ol>
+            <li class="" id="text">
+              <i class="icon-move"></i><span contenteditable class="user-input p text">Write some paragraph text here...</span>
+            </li>
+          </ol>
+          &lt;/p&gt;
+        </li>
+
+        <li class="" id="br">
+          <i class="icon-move"></i> &lt;br /&gt;
+        </li>
+
+        
+
+
+
+    </ol>
+</div>
+
+
+<!-- ****************************** ****************************** -->
+
+
+
+
+<h3> Text Formatting </h3> <!-- I'm only draggable (I clone) -->
+
+    <div id="html-text-menu">
+
+    <ol class="simple_with_no_drop vertical">
+
+        <li class="" id="h1">
+              <i class="icon-move"></i> &lt;h1 id="<span contenteditable class="user-input text"></span>" class="<span contenteditable class="user-input text"></span>"&gt;<span contenteditable class="user-input heading">Heading 1 text</span>&lt;/h1&gt;
+        </li>
+
+        <li class="" id="strong">
+            <i class="icon-move"></i>
+            &lt;strong&gt;
+            <span contenteditable class="user-input text">
+              Important text
+            </span>
+            &lt;/strong&gt;
+        </li>
+
+        <li class="" id="em">
+              <i class="icon-move"></i> &lt;em&gt;<span contenteditable class="user-input text">Emphasized text</span>&lt;/em&gt;
+        </li>
+
+
+    </ol>
+</div>
+
+
+
+
+<h3> Lists and other </h3>
+
+
+<div id="html-menu-lists-other">
+<ol class="simple_with_no_drop vertical">
+
+
+<li class="" id="ul">
+          <i class="icon-move"></i>
+          &lt;ul&gt;
+          <ol>
+            <li class="" id="uli">
+              <i class="icon-move"></i> &lt;li&gt; <span contenteditable class="user-input li"> Unordered list item </span>&lt;/li&gt;
+            </li>
+          </ol>
+          &lt;/ul&gt;
+        </li>
+
+
+        <li class="" id="ol">
+          <i class="icon-move"></i>
+          &lt;ol&gt;
+          <ol>
+            <li class="" id="oli">
+              <i class="icon-move"></i> &lt;li&gt; <span contenteditable class="user-input li"> Ordered list item </span>&lt;/li&gt;
+            </li>
+          </ol>
+          &lt;/ol&gt;
+        </li>
+
+
+        <li class="" id="li">
+              <i class="icon-move"></i> &lt;li id="<span contenteditable class="user-input text"></span>" class="<span contenteditable class="user-input text"></span>"&gt; <span contenteditable class="user-input li"> List item </span>&lt;/li&gt;
+        </li>
+
+
+        <li class="" id="select">
+          <i class="icon-move"></i>
+          &lt;select&gt;
+          <ol>
+            <li class="" id="option">
+              <i class="icon-move"></i>
+              &lt;option value="<span contenteditable class="user-input text value">actual-value</span>"&gt;
+              <span contenteditable class="user-input text">Display value</span>
+              <br/>
+              &lt;/option&gt;
+            </li>
+          </ol>
+          &lt;/select&gt;
+        </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</ol>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- ---------- Potential trash can ---------- -->
+
+    <h3>Drop items you don't want here</h3>
+    <ol class="simple_with_no_drag vertical">
+      <li>
+          <i class="icon-move"></i>
+          <span contenteditable="true">Trash</span>
+        </li>
+    </ol>
+
+
+
+<!-- Bootstrap core CSS -->
+
+          
+            
+
+
+
+
+	  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
+
+
+
+
